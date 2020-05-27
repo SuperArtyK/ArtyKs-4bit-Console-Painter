@@ -22,7 +22,7 @@ int main()
     cfi.FontWeight = FW_NORMAL;
     std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-    string name = "ArtyK's 8bit paint v0.0.1." + build;
+    string name = "ArtyK's 4bit Console Painter v1.0.0." + build;
     LPCSTR lname = name.c_str();
     SetConsoleTitleA(lname);
     int line = 5, column = 5,x;
@@ -366,7 +366,7 @@ int main()
         lastpos[0] = column;
         lastpos[1] = line;
         lastpos[2] = attrib;
-        name = "ArtyK's 8bit paint v0.0.1." + build + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib);
+        name = "ArtyK's 4bit Console Painter v0.0.1." + build + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib);
         lname = name.c_str();
         SetConsoleTitleA(lname);
     }
