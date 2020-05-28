@@ -12,7 +12,7 @@ int main()
     HWND console = GetConsoleWindow();
     RECT r;
     GetWindowRect(console, &r);
-    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
     CONSOLE_FONT_INFOEX cfi;
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
@@ -29,7 +29,7 @@ int main()
     char cx;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
     //setCursorPosition(column, line);
-    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
     for (int i = 0; i < sizeof(picture); i++) {
         switch (picture[i])
         {
@@ -300,7 +300,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '=':
@@ -308,7 +308,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '-':
@@ -319,7 +319,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '_':
@@ -330,7 +330,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case 'r':
@@ -348,9 +348,9 @@ int main()
                 cfi.dwFontSize.X = 0;                   // Width of each character in the font
                 cfi.dwFontSize.Y = 14;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                cout << "Help menu:\nW/A/S/D -- controls of a brush\n'1' to '8' -- color pallete\n'9' -- change color pallete\nR - reset cursor position\nEnter -- clean screen\nEscape -- exit the ArtyK's Console Painter\n\nPress any key to continue. . .";
+                cout << "Help menu:\nW/A/S/D -- controls of a brush\n'1' to '8' -- color pallete\n'9' -- change color pallete\nR - reset cursor position\nEnter -- clean screen\nEscape -- exit the ArtyK's Console Painter\n+/- -- zoom in, zoom out\n'b' -- change the background color to gray/black. refresh the screen after you press it, to make visual changes\n\nPress any key to continue. . .";
                 _getch();
                 system("cls");
                 for (int i = 0; i < maxl; i++) {
@@ -363,7 +363,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case 'b':
@@ -420,9 +420,11 @@ int main()
                 cfi.dwFontSize.X = 0;                   // Width of each character in the font
                 cfi.dwFontSize.Y = 14;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                cout << "Exiting.";
+                cout << "Exiting";
+                Sleep(100);
+                cout << ".";
                 Sleep(100);
                 cout << " ";
                 Sleep(100);
