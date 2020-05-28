@@ -10,9 +10,9 @@ int main()
 {
 
     
-    
+    startup();
     //setCursorPosition(column, line);
-    
+    logodraw();
     paintstart();
 
 
@@ -26,47 +26,19 @@ int main()
             {
             case 's':
 
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-                setCursorPosition(lastpos[0], lastpos[1]);
-                cout << " ";
-                line++;
-                attrib = color[colornum];
-                if (mode == "Erase") {
-                    attrib = backgr;
-                }
+                draw(0);
                 break;
 
             case 'd':
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-                setCursorPosition(lastpos[0], lastpos[1]);
-                cout << " ";
-                column++;
-                attrib = color[colornum];
-                if (mode == "Erase") {
-                    attrib = backgr;
-                }
+                draw(1);
                 break;
 
             case 'w':
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-                setCursorPosition(lastpos[0], lastpos[1]);
-                cout << " ";
-                line--;
-                attrib = color[colornum];
-                if (mode == "Erase") {
-                    attrib = backgr;
-                }
+                draw(2);
                 break;
 
             case 'a':
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-                setCursorPosition(lastpos[0], lastpos[1]);
-                cout << " ";
-                column--;
-                attrib = color[colornum];
-                if (mode == "Erase") {
-                    attrib = backgr;
-                }
+                draw(3);
                 break;
 
             case '1':
@@ -294,26 +266,7 @@ int main()
 
          
         
-        if (line < 1) {
-            line = 1;
-        }
-        if (column < 1) {
-            column = 1;
-        }
-        
-
-
-
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attrib);
-        setCursorPosition(column, line);
-        cout << "B";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
-        lastpos[0] = column;
-        lastpos[1] = line;
-        lastpos[2] = attrib;
-        name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr) + " | Fontsize: " + to_string(fontsize);
-        lname = name.c_str();
-        SetConsoleTitleA(lname);
+        postproc();
     }
 
 

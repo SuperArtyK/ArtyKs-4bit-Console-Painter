@@ -11,6 +11,10 @@ void setCursorPosition(int x, int y);
 void startup(void);
 void paintstart(void);
 void logodraw(void);
+void draw(short type);
+void postproc(void);
+
+
 
 void setCursorPosition(int x, int y)
 {
@@ -210,9 +214,66 @@ void logodraw(void) {
 
 
 
+void draw(short type) {
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
+    setCursorPosition(lastpos[0], lastpos[1]);
+    cout << " ";
+    //type: 0 -- y+1, 1 -- x+1; 2 -- y-1; 3 -- x-1;
+    switch (type)
+    {
+
+    case 0:
+        line++;
+        break;
+
+    case 1:
+        column++;
+        break;
+
+    case 2:
+        line--;
+        break;
+
+    case 3:
+        column--;
+        break;
 
 
 
+
+    default:
+        break;
+    }
+    attrib = color[colornum];
+    if (mode == "Erase") {
+        attrib = backgr;
+    }
+
+}
+
+void postproc(void) {
+    if (line < 1) {
+        line = 1;
+    }
+    if (column < 1) {
+        column = 1;
+    }
+
+
+
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attrib);
+    setCursorPosition(column, line);
+    cout << "B";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
+    lastpos[0] = column;
+    lastpos[1] = line;
+    lastpos[2] = attrib;
+    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr) + " | Fontsize: " + to_string(fontsize);
+    lname = name.c_str();
+    SetConsoleTitleA(lname);
+}
 
 
 
