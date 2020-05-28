@@ -6,7 +6,7 @@ using namespace std;
 
 
 string mode = "Paint";
-
+short attrib = 15;
 bool pallete = 0;
 short colornum = 0;
 short lastpos[3];

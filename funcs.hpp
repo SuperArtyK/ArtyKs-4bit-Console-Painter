@@ -83,7 +83,7 @@ void paintstart(void) {
         cout << "\n";
     }
     line = column = 5;
-    short attrib = 15;
+    
     lastpos[0] = column;
     lastpos[1] = line;
     lastpos[2] = attrib;
@@ -95,7 +95,7 @@ void paintstart(void) {
     lastpos[0] = column;
     lastpos[1] = line;
     lastpos[2] = attrib;
-    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib);
+    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr) + " | Fontsize: " + to_string(fontsize);
     lname = name.c_str();
     SetConsoleTitleA(lname);
 
