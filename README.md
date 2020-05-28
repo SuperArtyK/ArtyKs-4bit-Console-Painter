@@ -17,8 +17,11 @@ Enter -- clean screen
 
 Escape -- exit the ArtyK's Console Painter
 
-The 'B' character in the paint mode is your cursor with brush
+The 'B' character on the painting field is your cursor with brush
 
++/- -- zoom in, zoom out
+
+'b' -- change the background color to gray/black. refresh the screen after you press it, to make visual changes
 
 
 # to-do list
