@@ -43,7 +43,8 @@ string name = "ArtyK's 4bit Console Painter v1.0.2." + build;
 LPCSTR lname = name.c_str();
 short cx;
 short fontsize = 8;
-
+int line = 5, column = 5, x;
+char cx;
 int maxl = 64, maxc = 64;
 string build = "666";
 char text[1048576];
