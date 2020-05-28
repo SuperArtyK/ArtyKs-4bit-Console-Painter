@@ -308,7 +308,7 @@ int main()
                     cout << " ";
                 }
                 cout << "\n";
-            }
+            } 
             attrib = backgr * 17;
             cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
             cfi.dwFontSize.Y = fontsize;
