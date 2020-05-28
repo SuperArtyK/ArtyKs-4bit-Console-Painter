@@ -35,11 +35,16 @@ short backgr = color[0];
 
 
 
+CONSOLE_FONT_INFOEX cfi;
+HWND console = GetConsoleWindow();
+RECT r;
 
+string name = "ArtyK's 4bit Console Painter v1.0.2." + build;
+LPCSTR lname = name.c_str();
 short cx;
 short fontsize = 8;
 
-
+int maxl = 64, maxc = 64;
 string build = "666";
 char text[1048576];
 string spicture = "";

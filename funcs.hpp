@@ -3,6 +3,13 @@
 #include "vars.hpp"
 #include "include.hpp"
 using namespace std;
+
+
+
+void ScreenSize(int x, int y);
+void setCursorPosition(int x, int y);
+
+
 void setCursorPosition(int x, int y)
 {
     static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -28,6 +35,55 @@ void ScreenSize(int x, int y) {
     SetConsoleWindowInfo(Handle, TRUE, &Rect);
 
 }
+
+void startup(void) {
+
+    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | PRESS ANY KEY TO CONTINUE . . .";
+    lname = name.c_str();
+    SetConsoleTitleA(lname);
+    _getch();
+    system("cls");
+
+    
+
+    cfi.dwFontSize.X = 8;                   // Width of each character in the font
+    cfi.dwFontSize.Y = 8;
+    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+
+
+
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif // !FUNCS_H

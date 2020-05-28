@@ -9,11 +9,9 @@ using namespace std;
 int main()
 {
 
-    HWND console = GetConsoleWindow();
-    RECT r;
+    
     GetWindowRect(console, &r);
-    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
-    CONSOLE_FONT_INFOEX cfi;
+    MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
     cfi.dwFontSize.X = 10;                   // Width of each character in the font
@@ -22,14 +20,12 @@ int main()
     cfi.FontWeight = FW_NORMAL;
     std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-    string name = "ArtyK's 4bit Console Painter v1.0.2." + build;
-    LPCSTR lname = name.c_str();
+    
     SetConsoleTitleA(lname);
     int line = 5, column = 5,x;
     char cx;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
     //setCursorPosition(column, line);
-    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
     for (int i = 0; i < sizeof(picture); i++) {
         switch (picture[i])
         {
@@ -129,23 +125,12 @@ int main()
             break;
         }
     }
-    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | PRESS ANY KEY TO CONTINUE . . .";
-    lname = name.c_str();
-    SetConsoleTitleA(lname);
-    _getch();
-    system("cls");
+    
 
-    int maxl = 64, maxc = 64;
-
-    cfi.dwFontSize.X = 6;                   // Width of each character in the font
-    cfi.dwFontSize.Y = 6;
-    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    startup();
 
 
-    ScreenSize(SHRT_MAX, SHRT_MAX);
 
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
     for (int i = 0; i < maxl; i++) {
         for (int a = 0; i < maxc; i++) {
             cout << " ";
@@ -300,7 +285,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '=':
@@ -308,7 +293,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '-':
@@ -319,7 +304,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '_':
@@ -330,7 +315,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case 'r':
@@ -348,7 +333,7 @@ int main()
                 cfi.dwFontSize.X = 0;                   // Width of each character in the font
                 cfi.dwFontSize.Y = 14;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
                 cout << "Help menu:\nW/A/S/D -- controls of a brush\n'1' to '8' -- color pallete\n'9' -- change color pallete\nR - reset cursor position\nEnter -- clean screen\nEscape -- exit the ArtyK's Console Painter\n+/- -- zoom in, zoom out\n'b' -- change the background color to gray/black. refresh the screen after you press it, to make visual changes\n\nPress any key to continue. . .";
                 _getch();
@@ -363,7 +348,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case 'b':
@@ -420,7 +405,7 @@ int main()
                 cfi.dwFontSize.X = 0;                   // Width of each character in the font
                 cfi.dwFontSize.Y = 14;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
                 cout << "Exiting";
                 Sleep(100);
@@ -465,7 +450,7 @@ int main()
         lastpos[0] = column;
         lastpos[1] = line;
         lastpos[2] = attrib;
-        name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr);
+        name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr) + " | Fontsize: " + to_string(fontsize);
         lname = name.c_str();
         SetConsoleTitleA(lname);
     }
