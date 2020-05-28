@@ -196,64 +196,24 @@ int main()
 
                 break;
 
-
-            case 10:
-                system("cls");
-                for (int i = 0; i < maxl; i++) {
-                    for (int a = 0; i < maxc; i++) {
-                        cout << " ";
-                    }
-                    cout << "\n";
-                }
-                attrib = backgr;
-                break;
-
             case '0':
 
-                if (mode == "Paint") {
-                    mode = "Erase";
-                    attribm = attrib;
-                    attrib = backgr;
-                }
-                else {
-                    mode = "Paint";
-                    attrib = attribm;
-                }
+                chngeback();
 
                 break;
 
+            case 10:
+                clearscr();
+                break;
+
+            
+
             case 13:
-                system("cls");
-                for (int i = 0; i < maxl; i++) {
-                    for (int a = 0; i < maxc; i++) {
-                        cout << " ";
-                    }
-                    cout << "\n";
-                }
-                attrib = backgr;
+                clearscr();
                 break;
 
             case 27:
-                system("cls");
-                cfi.dwFontSize.X = 0;                   // Width of each character in the font
-                cfi.dwFontSize.Y = 14;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                cout << "Exiting";
-                Sleep(100);
-                cout << ".";
-                Sleep(100);
-                cout << " ";
-                Sleep(100);
-                cout << ".";
-                Sleep(100);
-                cout << " ";
-                Sleep(100);
-                cout << ".";
-                Sleep(100);
-                cout << " ";
-                exit(0);
+                exitpaint();
                 break;
 
 

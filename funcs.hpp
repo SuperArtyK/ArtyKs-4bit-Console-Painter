@@ -13,6 +13,10 @@ void paintstart(void);
 void logodraw(void);
 void draw(short type);
 void postproc(void);
+void exitpaint(void);
+void clearscr(void);
+void chngeback(void);
+
 
 
 
@@ -273,6 +277,54 @@ void postproc(void) {
     name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr) + " | Fontsize: " + to_string(fontsize);
     lname = name.c_str();
     SetConsoleTitleA(lname);
+}
+
+void exitpaint(void) {
+
+    system("cls");
+    cfi.dwFontSize.X = 0;                   // Width of each character in the font
+    cfi.dwFontSize.Y = 14;
+    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+    cout << "Exiting";
+    Sleep(100);
+    cout << ".";
+    Sleep(100);
+    cout << " ";
+    Sleep(100);
+    cout << ".";
+    Sleep(100);
+    cout << " ";
+    Sleep(100);
+    cout << ".";
+    Sleep(100);
+    cout << " ";
+    exit(0);
+
+}
+
+void clearscr(void) {
+    system("cls");
+    for (int i = 0; i < maxl; i++) {
+        for (int a = 0; i < maxc; i++) {
+            cout << " ";
+        }
+        cout << "\n";
+    }
+    attrib = backgr;
+}
+
+void chngeback(void) {
+    if (mode == "Paint") {
+        mode = "Erase";
+        attribm = attrib;
+        attrib = backgr;
+    }
+    else {
+        mode = "Paint";
+        attrib = attribm;
+    }
 }
 
 
