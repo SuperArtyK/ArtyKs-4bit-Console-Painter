@@ -82,41 +82,19 @@ int main()
 
 
             case '+':
-                fontsize++;
-                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-                cfi.dwFontSize.Y = fontsize;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                cngfont(0);
                 break;
 
             case '=':
-                fontsize++;
-                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-                cfi.dwFontSize.Y = fontsize;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                cngfont(0);
                 break;
 
             case '-':
-                fontsize--;
-                if (fontsize < 2) {
-                    fontsize = 2;
-                }
-                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-                cfi.dwFontSize.Y = fontsize;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                cngfont(1);
                 break;
 
             case '_':
-                fontsize--;
-                if (fontsize < 2) {
-                    fontsize = 2;
-                }
-                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-                cfi.dwFontSize.Y = fontsize;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                cngfont(1);
                 break;
 
             case 'r':

@@ -17,7 +17,8 @@ void exitpaint(void);
 void clearscr(void);
 void erase(void);
 void chngback(void);
-
+void help(void);
+void chngcolor(short col);
 
 
 void setCursorPosition(int x, int y)
@@ -388,6 +389,40 @@ void chngcolor(short col) {
     
 
 }
+
+void cngfont(bool type) {
+
+
+    //0 -- increase, 1 -- decrease
+    switch (type)
+    {
+
+    case 0:
+        fontsize++;
+        break;
+
+    case 1:
+        fontsize--;
+        if (fontsize < 2) {
+            fontsize = 2;
+        }
+        break;
+
+    default:
+        break;
+    }
+    cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
+    cfi.dwFontSize.Y = fontsize;
+    SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+
+
+}
+
+
+
+
+
 
 
 
