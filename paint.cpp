@@ -14,6 +14,9 @@ int main()
     //setCursorPosition(column, line);
     logodraw();
     paintstart();
+    
+    line = 1;
+    column = 1;
 
 
     for (;;) {
@@ -155,50 +158,24 @@ int main()
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
                 setCursorPosition(lastpos[0], lastpos[1]);
                 cout << " ";
-                line = 5;
-                column = 5;
+                line = 1;
+                column = 1;
                 colornum = 0;
                 pallete = 0;
                 break;
 
             case 'h':
-                system("cls");
-                cfi.dwFontSize.X = 0;                   // Width of each character in the font
-                cfi.dwFontSize.Y = 14;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                cout << "Help menu:\nW/A/S/D -- controls of a brush\n'1' to '8' -- color pallete\n'9' -- change color pallete\nR - reset cursor position\nEnter -- clean screen\nEscape -- exit the ArtyK's Console Painter\n+/- -- zoom in, zoom out\n'b' -- change the background color to gray/black. refresh the screen after you press it, to make visual changes\n\nPress any key to continue. . .";
-                _getch();
-                system("cls");
-                for (int i = 0; i < maxl; i++) {
-                    for (int a = 0; i < maxc; i++) {
-                        cout << " ";
-                    }
-                    cout << "\n";
-                }
-                attrib = backgr;
-                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-                cfi.dwFontSize.Y = fontsize;
-                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                help();
                 break;
 
             case 'b':
 
-                if (backgr == 143) {
-                    backgr = 15;
-                }
-                else
-                {
-                    backgr = 143;
-                }
-
+                chngback();
                 break;
 
             case '0':
 
-                chngeback();
+                erase();
 
                 break;
 
