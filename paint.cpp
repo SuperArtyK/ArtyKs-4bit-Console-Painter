@@ -15,8 +15,7 @@ int main()
     logodraw();
     paintstart();
     
-    line = 1;
-    column = 1;
+    
 
 
     for (;;) {
@@ -45,73 +44,39 @@ int main()
                 break;
 
             case '1':
-                if (mode == "Paint") {
-                    colornum = 0 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(0);
                 break;
 
             case '2':
-                if (mode == "Paint") {
-                    colornum = 1 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(1);
                 break;
 
             case '3':
-                if (mode == "Paint") {
-                    colornum = 2 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(2);
                 break;
 
             case '4':
-                if (mode == "Paint") {
-                    colornum = 3 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(3);
                 break;
 
             case '5':
-                if (mode == "Paint") {
-                    colornum = 4 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(4);
                 break;
 
             case '6':
-                if (mode == "Paint") {
-                    colornum = 5 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(5);
                 break;
 
             case '7':
-                if (mode == "Paint") {
-                    colornum = 6 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(6);
                 break;
 
             case '8':
-                if (mode == "Paint") {
-                    colornum = 7 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(7);
                 break;
 
             case '9':
-                if (mode == "Paint") {
-                    if (pallete == 1) {
-                        pallete = 0;
-                    }
-                    else
-                    {
-                        pallete = 1;
-                    }
-                    colornum = 7 + (pallete * 8);
-                    attrib = color[colornum];
-                }
+                chngcolor(9);
                 break;
 
 
@@ -121,7 +86,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '=':
@@ -129,7 +94,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '-':
@@ -140,7 +105,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case '_':
@@ -151,7 +116,7 @@ int main()
                 cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
                 cfi.dwFontSize.Y = fontsize;
                 SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-                MoveWindow(console, r.left, r.top, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
+                MoveWindow(console, 10, 10, 1000, 1000, TRUE); ScreenSize(SHRT_MAX, SHRT_MAX);
                 break;
 
             case 'r':
