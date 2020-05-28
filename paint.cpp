@@ -19,9 +19,7 @@ int main()
 
 
     for (;;) {
-        cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-        cfi.dwFontSize.Y = fontsize;
-        SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+        cngfont(2);//some random value that its not 0 or 1
 
         if (_kbhit()) {
             switch (_getch())
@@ -98,13 +96,7 @@ int main()
                 break;
 
             case 'r':
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-                setCursorPosition(lastpos[0], lastpos[1]);
-                cout << " ";
-                line = 1;
-                column = 1;
-                colornum = 0;
-                pallete = 0;
+                resetpos();
                 break;
 
             case 'h':
