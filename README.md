@@ -17,6 +17,9 @@ Enter -- clean screen
 
 Escape -- exit the ArtyK's Console Painter
 
+The 'B' character in the paint mode is your cursor with brush
+
+
 
 # to-do list
 

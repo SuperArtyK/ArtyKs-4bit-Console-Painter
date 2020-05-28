@@ -8,28 +8,28 @@
 using namespace std;
 int main()
 {
-    
+
     HWND console = GetConsoleWindow();
     RECT r;
     GetWindowRect(console, &r);
-    MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
+    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
     CONSOLE_FONT_INFOEX cfi;
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
-    cfi.dwFontSize.X = 6;                   // Width of each character in the font
-    cfi.dwFontSize.Y = 6;                  // Height
+    cfi.dwFontSize.X = 10;                   // Width of each character in the font
+    cfi.dwFontSize.Y = 10;                  // Height
     cfi.FontFamily = FF_DONTCARE;
     cfi.FontWeight = FW_NORMAL;
     std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-    string name = "ArtyK's 4bit Console Painter v1.0.1." + build;
+    string name = "ArtyK's 4bit Console Painter v1.0.2." + build;
     LPCSTR lname = name.c_str();
     SetConsoleTitleA(lname);
     int line = 5, column = 5,x;
     char cx;
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 0);
     //setCursorPosition(column, line);
-    MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
+    MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
     for (int i = 0; i < sizeof(picture); i++) {
         switch (picture[i])
         {
@@ -129,262 +129,354 @@ int main()
             break;
         }
     }
-
+    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | PRESS ANY KEY TO CONTINUE . . .";
+    lname = name.c_str();
+    SetConsoleTitleA(lname);
     _getch();
     system("cls");
 
-    int maxl, maxc = maxl = 64;
+    int maxl = 64, maxc = 64;
 
     cfi.dwFontSize.X = 6;                   // Width of each character in the font
     cfi.dwFontSize.Y = 6;
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 
 
-    
+    ScreenSize(SHRT_MAX, SHRT_MAX);
 
 
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr * 17);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
     for (int i = 0; i < maxl; i++) {
         for (int a = 0; i < maxc; i++) {
             cout << " ";
         }
         cout << "\n";
     }
-
-    short attrib = 0;
+    line = column = 5;
+    short attrib = 15;
     lastpos[0] = column;
     lastpos[1] = line;
     lastpos[2] = attrib;
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attrib);
+    setCursorPosition(column, line);
+    cout << "B";
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
+    lastpos[0] = column;
+    lastpos[1] = line;
+    lastpos[2] = attrib;
+    name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib);
+    lname = name.c_str();
+    SetConsoleTitleA(lname);
+
 
     for (;;) {
         cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
         cfi.dwFontSize.Y = fontsize;
         SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-        cx = _getch();
-        switch (cx) 
-        {
-        case 's':
 
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-            setCursorPosition(lastpos[0], lastpos[1]);
-            cout << " ";
-            line++;
-            attrib = color[colornum];
-            break;
-
-        case 'd':
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-            setCursorPosition(lastpos[0], lastpos[1]);
-            cout << " ";
-            column++;
-            attrib = color[colornum];
-            break;
-
-        case 'w':
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-            setCursorPosition(lastpos[0], lastpos[1]);
-            cout << " ";
-            line--;
-            attrib = color[colornum];
-            break;
-
-        case 'a':
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
-            setCursorPosition(lastpos[0], lastpos[1]);
-            cout << " ";
-            column--;
-            attrib = color[colornum];
-            break;
-
-        case '1':
-            colornum = 0 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '2':
-            colornum = 1 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '3':
-            colornum = 2 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '4':
-            colornum = 3 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '5':
-            colornum = 4 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '6':
-            colornum = 5 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '7':
-            colornum = 6 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '8':
-            colornum = 7 + (pallete * 8);
-            attrib = color[colornum];
-            break;
-
-        case '9':
-            if (pallete == 1) {
-                pallete = 0;
-            }
-            else
+        if (_kbhit()) {
+            switch (_getch())
             {
-                pallete = 1;
-            }
-            colornum = 7 + (pallete * 8);
-            attrib = color[colornum];
-            break;
+            case 's':
 
-        case '+':
-            fontsize++;
-            cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-            cfi.dwFontSize.Y = fontsize;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            break;
-
-        case '=':
-            fontsize++;
-            cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-            cfi.dwFontSize.Y = fontsize;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            break;
-
-        case '-':
-            fontsize--;
-            if (fontsize < 2){
-                fontsize = 2;
-            }
-            cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-            cfi.dwFontSize.Y = fontsize;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            break;
-
-        case '_':
-            fontsize--;
-            if (fontsize < 2) {
-                fontsize = 2;
-            }
-            cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-            cfi.dwFontSize.Y = fontsize;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            break;
-
-        case 'r':
-            line = 5;
-            column = 5;
-            colornum = 0;
-            pallete = 0;
-            break;
-
-        case 'h':
-            system("cls");
-            cfi.dwFontSize.X = 0;                   // Width of each character in the font
-            cfi.dwFontSize.Y = 14;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-            cout << "Help menu:\nW/A/S/D -- controls of a brush\n'1' to '8' -- color pallete\n'9' -- change color pallete\nR - reset cursor position\nEnter -- clean screen\nEscape -- exit the ArtyK's Console Painter\n\nPress any key to continue. . .";
-            _getch();
-            system("cls");
-            for (int i = 0; i < maxl; i++) {
-                for (int a = 0; i < maxc; i++) {
-                    cout << " ";
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
+                setCursorPosition(lastpos[0], lastpos[1]);
+                cout << " ";
+                line++;
+                attrib = color[colornum];
+                if (mode == "Erase") {
+                    attrib = backgr;
                 }
-                cout << "\n";
-            } 
-            attrib = backgr * 17;
-            cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
-            cfi.dwFontSize.Y = fontsize;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            break;
+                break;
 
-        case 10:
-            system("cls");
-            for (int i = 0; i < maxl; i++) {
-                for (int a = 0; i < maxc; i++) {
-                    cout << " ";
+            case 'd':
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
+                setCursorPosition(lastpos[0], lastpos[1]);
+                cout << " ";
+                column++;
+                attrib = color[colornum];
+                if (mode == "Erase") {
+                    attrib = backgr;
                 }
-                cout << "\n";
-            }
-            attrib = backgr * 17;
-            break;
+                break;
 
-        case 13:
-            system("cls");
-            for (int i = 0; i < maxl; i++) {
-                for (int a = 0; i < maxc; i++) {
-                    cout << " ";
+            case 'w':
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
+                setCursorPosition(lastpos[0], lastpos[1]);
+                cout << " ";
+                line--;
+                attrib = color[colornum];
+                if (mode == "Erase") {
+                    attrib = backgr;
                 }
-                cout << "\n";
+                break;
+
+            case 'a':
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
+                setCursorPosition(lastpos[0], lastpos[1]);
+                cout << " ";
+                column--;
+                attrib = color[colornum];
+                if (mode == "Erase") {
+                    attrib = backgr;
+                }
+                break;
+
+            case '1':
+                if (mode == "Paint") {
+                    colornum = 0 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '2':
+                if (mode == "Paint") {
+                    colornum = 1 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '3':
+                if (mode == "Paint") {
+                    colornum = 2 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '4':
+                if (mode == "Paint") {
+                    colornum = 3 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '5':
+                if (mode == "Paint") {
+                    colornum = 4 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '6':
+                if (mode == "Paint") {
+                    colornum = 5 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '7':
+                if (mode == "Paint") {
+                    colornum = 6 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '8':
+                if (mode == "Paint") {
+                    colornum = 7 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+            case '9':
+                if (mode == "Paint") {
+                    if (pallete == 1) {
+                        pallete = 0;
+                    }
+                    else
+                    {
+                        pallete = 1;
+                    }
+                    colornum = 7 + (pallete * 8);
+                    attrib = color[colornum];
+                }
+                break;
+
+
+
+            case '+':
+                fontsize++;
+                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
+                cfi.dwFontSize.Y = fontsize;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                break;
+
+            case '=':
+                fontsize++;
+                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
+                cfi.dwFontSize.Y = fontsize;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                break;
+
+            case '-':
+                fontsize--;
+                if (fontsize < 2) {
+                    fontsize = 2;
+                }
+                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
+                cfi.dwFontSize.Y = fontsize;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                break;
+
+            case '_':
+                fontsize--;
+                if (fontsize < 2) {
+                    fontsize = 2;
+                }
+                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
+                cfi.dwFontSize.Y = fontsize;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                break;
+
+            case 'r':
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), lastpos[2]);
+                setCursorPosition(lastpos[0], lastpos[1]);
+                cout << " ";
+                line = 5;
+                column = 5;
+                colornum = 0;
+                pallete = 0;
+                break;
+
+            case 'h':
+                system("cls");
+                cfi.dwFontSize.X = 0;                   // Width of each character in the font
+                cfi.dwFontSize.Y = 14;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+                cout << "Help menu:\nW/A/S/D -- controls of a brush\n'1' to '8' -- color pallete\n'9' -- change color pallete\nR - reset cursor position\nEnter -- clean screen\nEscape -- exit the ArtyK's Console Painter\n\nPress any key to continue. . .";
+                _getch();
+                system("cls");
+                for (int i = 0; i < maxl; i++) {
+                    for (int a = 0; i < maxc; i++) {
+                        cout << " ";
+                    }
+                    cout << "\n";
+                }
+                attrib = backgr;
+                cfi.dwFontSize.X = fontsize;                   // Width of each character in the font
+                cfi.dwFontSize.Y = fontsize;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                break;
+
+            case 'b':
+
+                if (backgr == 143) {
+                    backgr = 15;
+                }
+                else
+                {
+                    backgr = 143;
+                }
+
+                break;
+
+
+            case 10:
+                system("cls");
+                for (int i = 0; i < maxl; i++) {
+                    for (int a = 0; i < maxc; i++) {
+                        cout << " ";
+                    }
+                    cout << "\n";
+                }
+                attrib = backgr;
+                break;
+
+            case '0':
+
+                if (mode == "Paint") {
+                    mode = "Erase";
+                    attribm = attrib;
+                    attrib = backgr;
+                }
+                else {
+                    mode = "Paint";
+                    attrib = attribm;
+                }
+
+                break;
+
+            case 13:
+                system("cls");
+                for (int i = 0; i < maxl; i++) {
+                    for (int a = 0; i < maxc; i++) {
+                        cout << " ";
+                    }
+                    cout << "\n";
+                }
+                attrib = backgr;
+                break;
+
+            case 27:
+                system("cls");
+                cfi.dwFontSize.X = 0;                   // Width of each character in the font
+                cfi.dwFontSize.Y = 14;
+                SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+                MoveWindow(console, r.left, r.top, 1200, 1200, TRUE);
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+                cout << "Exiting.";
+                Sleep(100);
+                cout << " ";
+                Sleep(100);
+                cout << ".";
+                Sleep(100);
+                cout << " ";
+                Sleep(100);
+                cout << ".";
+                Sleep(100);
+                cout << " ";
+                exit(0);
+                break;
+
+
+            default:
+                break;
             }
-            attrib = backgr * 17;
-            break;
-
-        case 27:
-            system("cls");
-            cfi.dwFontSize.X = 0;                   // Width of each character in the font
-            cfi.dwFontSize.Y = 14;
-            SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-            MoveWindow(console, r.left, r.top, 1280, 720, TRUE);
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-            cout << "Exiting.";
-            Sleep(100);
-            cout << " ";
-            Sleep(100);
-            cout << ".";
-            Sleep(100);
-            cout << " ";
-            Sleep(100);
-            cout << ".";
-            Sleep(100);
-            cout << " ";
-            exit(0);
-            break;
-
-
-        default:
-            break;
         }
+
+
+
+         
+        
+        if (line < 1) {
+            line = 1;
+        }
+        if (column < 1) {
+            column = 1;
+        }
+        
+
+
+
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attrib);
         setCursorPosition(column, line);
         cout << "B";
-        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr*17);
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), backgr);
         lastpos[0] = column;
         lastpos[1] = line;
         lastpos[2] = attrib;
-        name = "ArtyK's 4bit Console Painter v1.0.1." + build + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib);
+        name = "ArtyK's 4bit Console Painter v1.0.2." + build + " | Mode: " + mode + " | X: " + to_string(column) + ", Y: " + to_string(line) + " | Color attribute: " + to_string(attrib) + " | Background: " + to_string(backgr);
         lname = name.c_str();
         SetConsoleTitleA(lname);
     }
 
 
 
-    cout << "\n\n\n\n";
-    _getch();
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
+// Tips for Getting Started:
 //   1. Use the Solution Explorer window to add/manage files
 //   2. Use the Team Explorer window to connect to source control
 //   3. Use the Output window to see build output and other messages

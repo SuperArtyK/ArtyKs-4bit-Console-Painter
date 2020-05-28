@@ -11,7 +11,21 @@ void setCursorPosition(int x, int y)
     SetConsoleCursorPosition(hOut, coord);
 }
 
-void gettextstring() {
+void ScreenSize(int x, int y) {
+
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+
+    _SMALL_RECT Rect;
+    Rect.Top = 0;
+    Rect.Left = 0;
+    Rect.Bottom = x - 1;
+    Rect.Right = y - 1;
+
+    HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleScreenBufferSize(Handle, coord);
+    SetConsoleWindowInfo(Handle, TRUE, &Rect);
 
 }
 
